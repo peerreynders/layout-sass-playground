@@ -20,10 +20,20 @@
 	}
 
 	@if $split-after {
-  	& > :nth-child($split-after) {
-  		margin-block-end: auto;
+		& > :nth-child($split-after) {
+			margin-block-end: auto;
 		}
-  }
+	}
+}
+
+// --- cluster
+
+@mixin cluster($justify: 'flex-start', $align: 'flex-start', $space: 1rem) {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space;
+	justify-content: $justify;
+	align-items: $align;
 }
 
 // --- sidebar
@@ -44,11 +54,11 @@
 }
 
 @mixin with-sidebar(
-	$left: true, 
-	$side-width: null, 
-	$content-min: 50%, 
+	$left: true,
+	$side-width: null,
+	$content-min: 50%,
 	$space: 1rem,
-	$no-stretch: false,
+	$no-stretch: false
 ) {
 	display: flex;
 	flex-wrap: wrap;

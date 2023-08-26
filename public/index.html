@@ -13,16 +13,34 @@
 					<h3>Basic Stack</h3>
 					<figure class="callout">
 						<p>
-							The <code>l-stack</code> class on the container 
-							element organizes the direct children as stack items
-							using <code>display: flex</code> and 
-							<code>flex-direction: column</code>. Using the 
-							<a href="https://piccalil.li/quick-tip/flow-utility/">flow technique</a>
-							(<code>l-stack &gt; * + * { margin-block-start: 1.5rem }</code>)
-							the items are evenly spaced
-							(source: 
-							<a href="https://every-layout.dev/layouts/stack/">The Stack: Every Layout</a>).
-					  </p>
+							The Stack uses a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>column</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context.
+						</p>
+						<p>
+							It uses the
+							<a href="https://piccalil.li/quick-tip/flow-utility/"
+								>flow technique</a
+							>
+							to separate the items using
+							<code>margin-block-start</code> (<code>margin-top</code>). This
+							makes it possible to optionally "split" the stack (unlike with the
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap"
+								><code>gap</code></a
+							>
+							property). (source:
+							<a href="https://every-layout.dev/layouts/stack/"
+								>The Stack: Every Layout</a
+							>)
+						</p>
 					</figure>
 					<div class="l-stack container">
 						<div class="box">item one</div>
@@ -34,11 +52,8 @@
 					<h3>Nested Stack</h3>
 					<figure class="callout">
 						<p>
-							Here two stacks are themselves stack items. 
-							The outer stack uses a larger gap 
-							(via the <code>l-stack--s2</code> class)
-							while the inner uses a smaller gap
-							(with the <code>l-stack--s0</code> class).
+							Here two stacks are themselves stack items. The outer stack uses a
+							larger inter-item space than the inner stacks.
 						</p>
 					</figure>
 					<div class="l-stack-large container">
@@ -58,33 +73,73 @@
 				</section>
 			</article>
 			<article class="flow">
+				<h2>The Cluster</h2>
+				<section class="flow">
+					<h3>Basic Cluster</h3>
+					<div role="list" class="l-cluster container">
+						<div role="listitem" class="box">About</div>
+						<div role="listitem" class="box">Shop</div>
+						<div role="listitem" class="box">Blog</div>
+						<div role="listitem" class="box">Contact</div>
+						<div role="listitem" class="box">Accessibility</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Nested Cluster</h3>
+					<div class="l-cluster-header container">
+						<div class="box">Home</div>
+						<div role="list" class="l-cluster">
+							<div role="listitem" class="box">About</div>
+							<div role="listitem" class="box">Shop</div>
+							<div role="listitem" class="box">Blog</div>
+							<div role="listitem" class="box">Contact</div>
+						</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
 				<h2>Sidebar</h2>
 				<section class="flow">
 					<h3>Sidebar Left/Top</h3>
 					<figure class="callout">
 						<p>
-						  The Sidebar utilizes a
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">row</a>
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">wrapping</a>
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout">
+							The Sidebar utilizes a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>row</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>wrapping</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
 								flexbox
-							</a> 
-							layout context. The layout wraps as soon as
-							the <code>min-inline-size</code> of the non-sidebar element and the width of the
-							sidebar element cannot be accomodated within the parent element.
+							</a>
+							layout context. The layout wraps as soon as the
+							<code>min-inline-size</code> of the non-sidebar element and the
+							width of the sidebar element cannot be accomodated within the
+							parent element.
 						</p>
 						<p>
-							This is accomplished by setting the 
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow">
+							This is accomplished by setting the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
+							>
 								<code>flex-grow</code>
 							</a>
-							property on the non-sidebar element to <code>999</code> in contrast to the 
-							<code>1</code> value on the sidebar element. This allocates 99.9% of the excess 
-							width to the non-sidebar element. (source: 
-							<a href="https://every-layout.dev/layouts/sidebar/">The Sidebar: Every Layout</a>).
+							property on the non-sidebar element to <code>999</code> in
+							contrast to the <code>1</code> value on the sidebar element. This
+							allocates 99.9% of the excess width to the non-sidebar element.
+							(source:
+							<a href="https://every-layout.dev/layouts/sidebar/"
+								>The Sidebar: Every Layout</a
+							>).
 						</p>
 						<p>
-							The sidebar will appear to the left/top if it is the first child element.
+							The sidebar will appear to the left/top if it is the first child
+							element.
 						</p>
 					</figure>
 					<div class="l-with-sidebar-left-top container">
@@ -96,7 +151,8 @@
 					<h3>Sidebar Right/Bottom</h3>
 					<figure class="callout">
 						<p>
-							The sidebar will appear to the bottom/top if it is the last child element.
+							The sidebar will appear to the bottom/top if it is the last child
+							element.
 						</p>
 					</figure>
 					<div class="l-with-sidebar-right-bottom container">
@@ -108,12 +164,14 @@
 					<h3>Sidebar No Stretch</h3>
 					<figure class="callout">
 						<p>
-							Flexbox defaults to <code>stretch</code> for the 
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">
+							Flexbox defaults to <code>stretch</code> for the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+							>
 								<code>align-items</code>
 							</a>
-							property. By setting it to <code>flex-start</code> the child elements will
-							have their normal height.
+							property. By setting it to <code>flex-start</code> the child
+							elements will have their normal height.
 						</p>
 					</figure>
 					<div class="l-with-sidebar-no-stretch container">

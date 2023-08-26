@@ -1,0 +1,5 @@
+node_modules
+public/styles.*
+public/fonts/*
+!public/fonts/.gitkeep
+src/styles/_fonts.scss

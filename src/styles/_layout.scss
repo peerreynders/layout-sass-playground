@@ -1,0 +1,77 @@
+// --- stack
+
+@mixin stack($space: 1.5rem, $recursive: false, $split-after: null) {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	& > * {
+		margin-block: 0;
+	}
+
+	@if $recursive {
+		& * + * {
+			margin-block-start: $space;
+		}
+	} @else {
+		& > * + * {
+			margin-block-start: $space;
+		}
+	}
+
+	@if $split-after {
+  	& > :nth-child($split-after) {
+  		margin-block-end: auto;
+		}
+  }
+}
+
+// --- sidebar
+
+@mixin _with-sidebar__sidebar($basis) {
+	@if $basis {
+		flex: 1;
+	} @else {
+		flex: 1 $basis;
+	}
+}
+
+@mixin _with-sidebar__other($width) {
+	flex: 999 0;
+	@if $width {
+		min-inline-size: $width;
+	}
+}
+
+@mixin with-sidebar(
+	$left: true, 
+	$side-width: null, 
+	$content-min: 50%, 
+	$space: 1rem,
+	$no-stretch: false,
+) {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space;
+	@if $no-stretch {
+		align-items: flex-start;
+	}
+
+	@if $left {
+		& > :first-child {
+			@include _with-sidebar__sidebar($side-width);
+		}
+
+		& > :last-child {
+			@include _with-sidebar__other($content-min);
+		}
+	} @else {
+		& > :first-child {
+			@include _with-sidebar__other($content-min);
+		}
+
+		& > :last-child {
+			@include _with-sidebar__sidebar($side-width);
+		}
+	}
+}

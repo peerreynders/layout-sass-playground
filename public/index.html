@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="eng">
+	<head>
+		<meta charset="utf-8" />
+		<title>Layout Sass Playground</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main>
+			<article class="flow">
+				<h2>Stack</h2>
+				<section class="flow">
+					<h3>Basic Stack</h3>
+					<figure class="callout">
+						<p>
+							The <code>l-stack</code> class on the container 
+							element organizes the direct children as stack items
+							using <code>display: flex</code> and 
+							<code>flex-direction: column</code>. Using the 
+							<a href="https://piccalil.li/quick-tip/flow-utility/">flow technique</a>
+							(<code>l-stack &gt; * + * { margin-block-start: 1.5rem }</code>)
+							the items are evenly spaced
+							(source: 
+							<a href="https://every-layout.dev/layouts/stack/">The Stack: Every Layout</a>).
+					  </p>
+					</figure>
+					<div class="l-stack container">
+						<div class="box">item one</div>
+						<div class="box">item two</div>
+						<div class="box">item three</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Nested Stack</h3>
+					<figure class="callout">
+						<p>
+							Here two stacks are themselves stack items. 
+							The outer stack uses a larger gap 
+							(via the <code>l-stack--s2</code> class)
+							while the inner uses a smaller gap
+							(with the <code>l-stack--s0</code> class).
+						</p>
+					</figure>
+					<div class="l-stack-large container">
+						<h3>First Stack</h3>
+						<div class="l-stack-small">
+							<div class="box">item one</div>
+							<div class="box">item two</div>
+							<div class="box">item three</div>
+						</div>
+						<h3>Second Stack</h3>
+						<div class="l-stack-small">
+							<div class="box">item four</div>
+							<div class="box">item five</div>
+							<div class="box">item six</div>
+						</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
+				<h2>Sidebar</h2>
+				<section class="flow">
+					<h3>Sidebar Left/Top</h3>
+					<figure class="callout">
+						<p>
+						  The Sidebar utilizes a
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">row</a>
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">wrapping</a>
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout">
+								flexbox
+							</a> 
+							layout context. The layout wraps as soon as
+							the <code>min-inline-size</code> of the non-sidebar element and the width of the
+							sidebar element cannot be accomodated within the parent element.
+						</p>
+						<p>
+							This is accomplished by setting the 
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow">
+								<code>flex-grow</code>
+							</a>
+							property on the non-sidebar element to <code>999</code> in contrast to the 
+							<code>1</code> value on the sidebar element. This allocates 99.9% of the excess 
+							width to the non-sidebar element. (source: 
+							<a href="https://every-layout.dev/layouts/sidebar/">The Sidebar: Every Layout</a>).
+						</p>
+						<p>
+							The sidebar will appear to the left/top if it is the first child element.
+						</p>
+					</figure>
+					<div class="l-with-sidebar-left-top container">
+						<div class="box">sidebar</div>
+						<div class="box box--tall box--wide">main</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Sidebar Right/Bottom</h3>
+					<figure class="callout">
+						<p>
+							The sidebar will appear to the bottom/top if it is the last child element.
+						</p>
+					</figure>
+					<div class="l-with-sidebar-right-bottom container">
+						<div class="box box--tall">main</div>
+						<div class="box">sidebar</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Sidebar No Stretch</h3>
+					<figure class="callout">
+						<p>
+							Flexbox defaults to <code>stretch</code> for the 
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">
+								<code>align-items</code>
+							</a>
+							property. By setting it to <code>flex-start</code> the child elements will
+							have their normal height.
+						</p>
+					</figure>
+					<div class="l-with-sidebar-no-stretch container">
+						<div class="box">sidebar</div>
+						<div class="box box--tall box--wide">main</div>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

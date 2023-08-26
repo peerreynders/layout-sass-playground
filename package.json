@@ -1,0 +1,21 @@
+{
+  "name": "layout-sass-playground",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "sass": "sass --watch src/styles:public",
+    "serve": "http-server -a localhost -p 3000 -c-1 ./public",
+    "format": "prettier --write ./src ./public/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fontsource/roboto": "^5.0.8",
+    "http-server": "^14.1.1",
+    "prettier": "^3.0.2",
+    "sass": "^1.66.1"
+  }
+}

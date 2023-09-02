@@ -76,6 +76,41 @@
 				<h2>The Cluster</h2>
 				<section class="flow">
 					<h3>Basic Cluster</h3>
+					<figure class="callout">
+						<p>
+							The cluster is simply a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>wrapping</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context.
+						</p>
+						<p>
+							<code>$justfy</code> (default: <code>flex-start</code>) supplies
+							the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"
+								><code>justify-content</code></a
+							>
+							value, specifying how space between the flex items is distributed
+							along the main axis.
+						</p>
+						<p>
+							<code>$align</code> (default: <code>flex-start</code>) supplies
+							the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+								><code>align-items</code></a
+							>
+							value, specifying the alignment of the flex items is distributed
+							along the cross axis.
+						</p>
+					</figure>
 					<div role="list" class="l-cluster container">
 						<div role="listitem" class="box">About</div>
 						<div role="listitem" class="box">Shop</div>
@@ -86,6 +121,18 @@
 				</section>
 				<section class="flow">
 					<h3>Nested Cluster</h3>
+					<figure class="callout">
+						<p>
+							The outer flex container uses
+							<code>$justify: space-between, $align: center</code> to push the
+							<em>Home</em> item to the start of the flex line and the inner
+							flex container to the end of it.
+						</p>
+						<p>
+							The inner flex container packs its items tightly by accepting the
+							<code>$justify: flex-start, $align: flex-start</code> defaults.
+						</p>
+					</figure>
 					<div class="l-cluster-header container">
 						<div class="box">Home</div>
 						<div role="list" class="l-cluster">
@@ -215,23 +262,25 @@
 							for each flex item.
 						</p>
 						<p>
-							The expression will yield a large positive
-							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length"
-								><code>length</code></a
-							>
-							when the flex container is wider than
-							<code>$min-inline-size</code>. That and the
+							The expression bottoms out at <code>0</code> when the flex
+							container is wider than <code>$min-inline-size</code>. Due to the
 							<a
 								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
 								><code>flex-grow</code></a
 							>
-							of <code>1</code> ensures that all the flex items use the same
-							width within the flex container (<a
+							value of <code>1</code> each of the flex items will occupy the
+							same width filling the entire flex line (<a
 								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex"
 								><code>flex</code> shorthand property</a
 							>). When the flex container is narrower than
-							<code>$min-inline-size</code> the expression bottoms out at
-							<code>0</code>.
+							<code>$min-inline-size</code> the expression yields a large
+							positive
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length"
+								><code>length</code></a
+							>
+							expanding each flex item to the full width of the flex container
+							so that the items wrap and each item occupies a separate flex
+							line.
 						</p>
 						<p>
 							<code>$limit</code> specifies the maximum number of flex items to

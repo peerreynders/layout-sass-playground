@@ -180,6 +180,84 @@
 					</div>
 				</section>
 			</article>
+			<article class="flow">
+				<h2>Switcher</h2>
+				<section class="flow">
+					<h3>Switcher</h3>
+					<figure class="callout">
+						<p>
+							The Switcher utilizes a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>row</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>wrapping</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context.
+						</p>
+						<p>
+							<code>$min-inline-size</code> provides the minimum width for a
+							horizontal layout. Below that the layout <em>switches</em> to the
+							vertical mode where each flex item occupies it's own row.
+							<code>max(0px, calc(($min-inline-size - 100%) * 999))</code>
+							determines the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis"
+								><code>flex-basis</code></a
+							>
+							for each flex item.
+						</p>
+						<p>
+							The expression will yield a large positive
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length"
+								><code>length</code></a
+							>
+							when the flex container is wider than
+							<code>$min-inline-size</code>. That and the
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
+								><code>flex-grow</code></a
+							>
+							of <code>1</code> ensures that all the flex items use the same
+							width within the flex container (<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex"
+								><code>flex</code> shorthand property</a
+							>). When the flex container is narrower than
+							<code>$min-inline-size</code> the expression bottoms out at
+							<code>0</code>.
+						</p>
+						<p>
+							<code>$limit</code> specifies the maximum number of flex items to
+							accomodate in the horizontal layout. When the number exceeds that
+							<code>$limit</code> the layout is forced into the vertical mode
+							regardless of flex container width (sources:
+							<a href="https://every-layout.dev/layouts/switcher/"
+								>The Switcher: Every Layout</a
+							>,
+							<a
+								href="https://heydonworks.com/article/the-flexbox-holy-albatross-reincarnated/"
+								>Flexbox Holy Albatross</a
+							>;
+							<a href="https://alistapart.com/article/quantity-queries-for-css/"
+								>Quantity Queries</a
+							>).
+						</p>
+					</figure>
+					<div class="l-switcher container">
+						<div class="box">item one</div>
+						<div class="box">item two</div>
+						<div class="box">item three</div>
+						<div class="box">item four</div>
+					</div>
+				</section>
+			</article>
 		</main>
 	</body>
 </html>

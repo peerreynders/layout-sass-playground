@@ -49,8 +49,14 @@ main {
 	padding-left: $gutter;
 }
 
-.flow > * + * {
-	margin-top: 2em;
+@mixin flow($space: 1rem) {
+	& > * + * {
+		margin-top: $space;
+	}
+}
+
+.flow {
+	@include flow(2em);
 }
 
 .callout {
@@ -59,6 +65,8 @@ main {
 	border: 1px solid color.$primary-dark;
 	color: color.$primary-dark;
 	max-width: 40rem;
+
+	@include flow;
 }
 
 .container {
@@ -122,4 +130,10 @@ main {
 
 .l-with-sidebar-no-stretch {
 	@include l.with-sidebar($content-min: 70%, $no-stretch: true);
+}
+
+// --- switcher
+
+.l-switcher {
+	@include l.switcher($min-inline-size: 60ch);
 }

@@ -85,3 +85,28 @@
 		}
 	}
 }
+
+// --- switcher
+
+@mixin switcher($min-inline-size, $space: 1rem, $limit: 4) {
+	$over-limit: $limit + 1;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: $space;
+
+	// When flex container width drops below
+	//   $min-inline-size
+	// items are laid out vertically instead of horizontally
+	& > * {
+		flex: 1 max(0px, calc(($min-inline-size - 100%) * 999));
+	}
+
+	// Force vertical layout when there are more than
+	//   $limit
+	// items
+	& > :nth-last-child(n + #{$over-limit}),
+	& > :nth-last-child(n + #{$over-limit}) ~ * {
+		flex-basis: 100%;
+	}
+}

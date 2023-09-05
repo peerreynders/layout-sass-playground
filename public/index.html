@@ -15,7 +15,7 @@
 						<p>
 							The Stack uses a
 							<a
-								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
 								>column</a
 							>
 							<a
@@ -152,7 +152,7 @@
 						<p>
 							The Sidebar utilizes a
 							<a
-								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
 								>row</a
 							>
 							<a
@@ -235,7 +235,7 @@
 						<p>
 							The Switcher utilizes a
 							<a
-								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
 								>row</a
 							>
 							<a
@@ -304,6 +304,83 @@
 						<div class="box">item two</div>
 						<div class="box">item three</div>
 						<div class="box">item four</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
+				<h2>Cover</h2>
+				<section class="flow">
+					<h3>Full Cover</h3>
+					<figure class="callout">
+						<p>
+							The Cover uses a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+								>column</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context.
+						</p>
+						<p>
+							<code>$min-height</code> specifies the <code>min-block-size</code>
+							of the flex container that will grow to accomodate the content if
+							necessary.
+						</p>
+						<p>
+							<code>$space</code> specifies the margin of the header/footer
+							towards the center and the padding inside the flex container
+							(unless <code>$no-pad: true</code>).
+						</p>
+						<p>
+							Here, in addition to the centered <em>principal</em>, the cover
+							also lays out a header and footer.
+						</p>
+					</figure>
+					<div class="l-cover container">
+						<div class="box">header</div>
+						<div class="l-cover__principal box box--tall">principal</div>
+						<div class="box">footer</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Minimal Cover</h3>
+					<figure class="callout">
+						<p>
+							Here there is just the content to be vertically centered, no
+							header or footer.
+						</p>
+					</figure>
+					<div class="l-cover container">
+						<div class="l-cover__principal box box--tall">principal</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Cover with Header</h3>
+					<figure class="callout">
+						<p>
+							Content (centered in the <em>available</em> space) and just a
+							header.
+						</p>
+					</figure>
+					<div class="l-cover container">
+						<div class="box">header</div>
+						<div class="l-cover__principal box box--tall">principal</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Cover with Footer</h3>
+					<figure class="callout">
+						<p>
+							Content (centered in the <em>available</em> space) and a footer.
+						</p>
+					</figure>
+					<div class="l-cover container">
+						<div class="l-cover__principal box box--tall">principal</div>
+						<div class="box">footer</div>
 					</div>
 				</section>
 			</article>

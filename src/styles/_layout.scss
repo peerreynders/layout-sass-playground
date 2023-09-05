@@ -110,3 +110,32 @@
 		flex-basis: 100%;
 	}
 }
+
+// --- cover
+@mixin cover(
+	$centered: 'h1',
+	$space: 1rem,
+	$min-height: 100vh,
+	$no-pad: false
+) {
+	display: flex;
+	flex-direction: column;
+	min-block-size: $min-height;
+	padding: if($no-pad, 0, $space);
+
+	& > * {
+		margin-block: $space;
+	}
+
+	& > :first-child:not(#{$centered}) {
+		margin-block-start: 0;
+	}
+
+	& > :last-child:not(#{$centered}) {
+		margin-block-end: 0;
+	}
+
+	& > #{$centered} {
+		margin-block: auto;
+	}
+}

@@ -137,3 +137,15 @@ main {
 .l-switcher {
 	@include l.switcher($min-inline-size: 60ch);
 }
+
+// --- cover
+
+.l-cover {
+	@include l.cover($min-height: 22rem, $centered: '.l-cover__principal');
+}
+
+.l-cover__principal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

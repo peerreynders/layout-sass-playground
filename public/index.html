@@ -384,6 +384,46 @@
 					</div>
 				</section>
 			</article>
+			<article class="flow">
+				<h2>Grid</h2>
+				<section class="flow">
+					<h3>Grid</h3>
+					<figure class="callout">
+						<p>
+							The Grid uses a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
+							>
+								grid
+							</a>
+							layout context though it's set up for its columns to behave in a
+							more
+							<em>flexy</em> manner.
+						</p>
+						<p>
+							<code>$min-column-width</code> sets the "minimum width" for an
+							item—which determines the number of columns inside the grid
+							container. Essentially there are as many columns as possible as
+							long as the item width does not drop below
+							<code>$min-column-width</code>.
+						</p>
+						<p>
+							Other than that the items seem to wrap similar to a flexible box
+							layout while all the items have the same width and within each row
+							all the items have the same height.
+						</p>
+					</figure>
+					<div class="l-grid container">
+						<div class="box">item one</div>
+						<div class="box">item two</div>
+						<div class="box box--tall">item three</div>
+						<div class="box">item four</div>
+						<div class="box box--tall">item five</div>
+						<div class="box">item six</div>
+						<div class="box box--tall">item seven</div>
+					</div>
+				</section>
+			</article>
 		</main>
 	</body>
 </html>

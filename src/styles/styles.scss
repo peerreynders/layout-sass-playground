@@ -149,3 +149,8 @@ main {
 	justify-content: center;
 	align-items: center;
 }
+
+// --- grid
+.l-grid {
+	@include l.grid($min-column-width: 20ch);
+}

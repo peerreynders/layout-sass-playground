@@ -139,3 +139,19 @@
 		margin-block: auto;
 	}
 }
+
+// --- grid
+
+@mixin grid($min-column-width: 250px, $space: 1rem) {
+	display: grid;
+	gap: $space;
+
+	@supports (inline-size: min($min-column-width, 100%)) {
+		& {
+			grid-template-columns: repeat(
+				auto-fit,
+				minmax(min($min-column-width, 100%), 1fr)
+			);
+		}
+	}
+}

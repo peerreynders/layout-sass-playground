@@ -410,7 +410,10 @@
 						<p>
 							Other than that the items seem to wrap similar to a flexible box
 							layout while all the items have the same width and within each row
-							all the items have the same height.
+							all the items have the same height (source:
+							<a href="https://every-layout.dev/layouts/grid/"
+								>The Grid: Every Layout</a
+							>).
 						</p>
 					</figure>
 					<div class="l-grid container">
@@ -421,6 +424,38 @@
 						<div class="box box--tall">item five</div>
 						<div class="box">item six</div>
 						<div class="box box--tall">item seven</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
+				<h2>Frame</h2>
+				<section class="flow">
+					<h3>Frame</h3>
+					<figure class="callout">
+						<p>
+							The Frame uses a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context to vertically and horizontally center its content.
+						</p>
+						<p>
+							<code>$n</code> and <code>$d</code> provide the numerator and
+							denominator for the aspect ratio of the container. The content
+							fills the container but any overflow is cropped.
+						</p>
+						<p>
+							<code>$position</code> makes it possible to adjust the position of
+							the content to expose a different part of it (source:
+							<a href="https://every-layout.dev/layouts/frame/"
+								>The Frame: Every Layout</a
+							>).
+						</p>
+					</figure>
+					<div class="l-frame container">
+						<img src="./images/chrome.jpg" alt="A square image" />
 					</div>
 				</section>
 			</article>

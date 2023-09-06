@@ -151,6 +151,12 @@ main {
 }
 
 // --- grid
+
 .l-grid {
 	@include l.grid($min-column-width: 20ch);
+}
+
+// --- frame
+.l-frame {
+	@include l.frame($n: 16, $d: 9, $position: '0 16%');
 }

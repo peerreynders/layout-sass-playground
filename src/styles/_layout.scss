@@ -155,3 +155,23 @@
 		}
 	}
 }
+
+// --- frame
+
+@mixin frame($n: 16, $d: 9, $position: null) {
+	aspect-ratio: #{$n} / #{$d};
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& > img,
+	& > video {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+		@if ($position) {
+			object-position: #{$position};
+		}
+	}
+}

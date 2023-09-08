@@ -4,6 +4,75 @@
 		<meta charset="utf-8" />
 		<title>Layout Sass Playground</title>
 		<link rel="stylesheet" href="styles.css" />
+		<script type="module">
+			import Qsao from 'https://esm.sh/qsa-observer@3.0.2';
+
+			const registry = new Map();
+			const query = [];
+			const root = self.document;
+			const handle = (element, mounted, selector) => {
+				const spec = registry.get(selector);
+				if (!spec) return;
+
+				(mounted ? spec.mounted : spec.unmounted)?.(element);
+			};
+			const qsao = Qsao({ query, root, handle });
+
+			function define(selector, spec) {
+				if (query.includes(selector)) return;
+
+				query.push(selector);
+				registry.set(selector, spec);
+				qsao.parse(root.querySelectorAll(selector));
+			}
+
+			self.rendezvous = define;
+		</script>
+		<script type="module">
+			function onReelChange(entries) {
+				const reel = entries[0].target;
+				const isOverflowing = reel.scrollWidth > reel.clientWidth;
+				reel.classList.toggle('js-overflowing', isOverflowing);
+			}
+
+			const instances = new WeakMap();
+			const spec = {
+				mounted(reel) {
+					const instance = {
+						resizeObserver: undefined,
+						mutationObserver: undefined,
+					};
+
+					if ('ResizeObserver' in self) {
+						instance.resizeObserver = new ResizeObserver(onReelChange).observe(
+							reel
+						);
+					}
+					if ('MutationObserver' in self) {
+						instance.mutationObserver = new MutationObserver(
+							onReelChange
+						).observe(reel, { childList: true });
+					}
+
+					instances.set(reel, instance);
+				},
+				unmounted(reel) {
+					const instance = instances.get(reel);
+					if (!instance) return;
+
+					instances.delete(reel);
+					if (instance.resizeObserver) {
+						instance.resizeObserver.disconnect();
+					}
+					if (instance.mutationObserver) {
+						instance.mutationObserver.disconnect();
+					}
+				},
+			};
+
+			self.rendezvous('.l-reel', spec);
+			self.rendezvous('.l-reel-no-bar', spec);
+		</script>
 	</head>
 	<body>
 		<main>
@@ -456,6 +525,139 @@
 					</figure>
 					<div class="l-frame container">
 						<img src="./images/chrome.jpg" alt="A square image" />
+					</div>
+				</section>
+			</article>
+			<article class="flow">
+				<h2>Reel</h2>
+				<section class="flow">
+					<h3>Reel</h3>
+					<figure class="callout">
+						<p>
+							The Reel uses a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+								>row</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+								>non-wrapping</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context. Overflowed content can be scrolled into view.
+						</p>
+						<p>
+							<code>$track-color</code> sets the scrollbar's track colour while
+							<code>$thumb-color</code> sets the thumb's colour (source:
+							<a href="https://every-layout.dev/layouts/reel/"
+								>The Reel: Every Layout</a
+							>).
+						</p>
+					</figure>
+					<div class="l-reel container sausage-links">
+						<div role="listitem">
+							<a href>Guides</a>
+						</div>
+						<div role="listitem">
+							<a href>Tutorial</a>
+						</div>
+						<div role="listitem">
+							<a href>API</a>
+						</div>
+						<div role="listitem">
+							<a href>Ecosystem</a>
+						</div>
+						<div role="listitem">
+							<a href>Examples</a>
+						</div>
+						<div role="listitem">
+							<a href>Playground</a>
+						</div>
+						<div role="listitem">
+							<a href>About</a>
+						</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Reel without Scrollbar</h3>
+					<figure class="callout">
+						<p>
+							<code>$no-bar: true</code> suppresses the scrollbar properties.
+							The items can still be scrolled with other means (e.g. keyboard).
+						</p>
+					</figure>
+					<div class="l-reel-no-bar container sausage-links">
+						<div role="listitem">
+							<a href>Guides</a>
+						</div>
+						<div role="listitem">
+							<a href>Tutorial</a>
+						</div>
+						<div role="listitem">
+							<a href>API</a>
+						</div>
+						<div role="listitem">
+							<a href>Ecosystem</a>
+						</div>
+						<div role="listitem">
+							<a href>Examples</a>
+						</div>
+						<div role="listitem">
+							<a href>Playground</a>
+						</div>
+						<div role="listitem">
+							<a href>About</a>
+						</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Reel with Dynamic Padding</h3>
+					<figure class="callout">
+						<p>
+							The Reel uses JavaScript to
+							<a
+								href="https://alistapart.com/article/understandingprogressiveenhancement"
+								>progressively enhance</a
+							>
+							its behaviour.
+						</p>
+						<p>
+							The <code>js-overflowing</code> class adds additional padding
+							between the flex container and the scrollbar. A
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver"
+								><code>ResizeObserver</code></a
+							>
+							re-evaluates the state of overflow whenever the size of the flex
+							container changes; a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver"
+								><code>MutationObserver</code></a
+							>
+							assesses the state of overflow whenever flex items are added or
+							removed.
+						</p>
+					</figure>
+					<div class="l-reel container sausage-links">
+						<div role="listitem">
+							<a href>Guides</a>
+						</div>
+						<div role="listitem">
+							<a href>Tutorial</a>
+						</div>
+						<div role="listitem">
+							<a href>Ecosystem</a>
+						</div>
+						<div role="listitem">
+							<a href>Examples</a>
+						</div>
+						<div role="listitem">
+							<a href>About</a>
+						</div>
 					</div>
 				</section>
 			</article>

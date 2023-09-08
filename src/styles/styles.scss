@@ -160,3 +160,37 @@ main {
 .l-frame {
 	@include l.frame($n: 16, $d: 9, $position: '0 16%');
 }
+
+// --- reel
+
+$reel-color: #006b9e;
+
+.l-reel {
+	@include l.reel($track-color: color.$stroke, $thumb-color: $reel-color);
+}
+
+.l-reel-no-bar {
+	@include l.reel($no-bar: true);
+}
+
+.sausage-links {
+	& > * {
+		white-space: nowrap;
+	}
+
+	& a,
+	& a:visited {
+		border: 1px solid #3a6fb6;
+		border-radius: 3rem;
+		color: $reel-color;
+		background-color: #f9f9f9;
+		padding: 0.6rem 0.9rem;
+		text-decoration: none;
+
+		&:hover {
+			border-color: #07254a;
+			background-color: #ebf5ff;
+			box-shadow: 0 2px 4px rgb(0 90 156 / 0.15);
+		}
+	}
+}

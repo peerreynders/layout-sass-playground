@@ -175,3 +175,66 @@
 		}
 	}
 }
+
+// --- reel
+
+@mixin reel(
+	$item-width: auto,
+	$space: 1rem,
+	$height: auto,
+	$no-bar: false,
+	$track-color: #000,
+	$thumb-color: #fff
+) {
+	display: flex;
+	block-size: $height;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	@if ($no-bar) {
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	} @else {
+		scrollbar-color: $thumb-color $track-color;
+
+		&::-webkit-scrollbar {
+			block-size: 1rem;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: $track-color;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: $track-color;
+			background-image: linear-gradient(
+				$track-color 0,
+				$track-color 0.25rem,
+				$thumb-color 0.25rem,
+				$thumb-color 0.75rem,
+				$track-color 0.75rem
+			);
+		}
+
+		&.js-overflowing {
+			padding-block-end: $space;
+		}
+	}
+
+	& > * {
+		flex: 0 0 $item-width;
+	}
+
+	& > img {
+		block-size: 100%;
+		flex-basis: auto;
+		width: auto;
+	}
+
+	& > * + * {
+		margin-inline-start: $space;
+	}
+}

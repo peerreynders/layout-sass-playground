@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @use '_fonts';
 @use '_reset';
 @use '_scale' as s;
@@ -10,6 +12,8 @@ $generic-shadow:
 	0px 1px 2px rgb(60 64 67 / 0.3),
 	0px 2px 6px 2px rgb(60 64 67 / 0.15);
 $gutter: s.$s1;
+$box-max-inline-size: 40rem;
+$cover-block-size: 22rem;
 
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -76,22 +80,35 @@ main {
 	max-inline-size: 600px;
 }
 
-.box {
+%box {
 	padding: s.$s0;
 	background-color: color.$off-white;
 	border: 1px solid color.$stroke;
 	box-shadow: $generic-shadow;
 	font-weight: 500;
-	text-align: center;
-	max-width: 40rem;
+	max-inline-size: $box-max-inline-size;
 
 	&.box--tall {
-		min-height: 6em;
+		min-block-size: 6em;
 	}
 
 	&.box--wide.box--wide {
-		min-width: 70%;
+		min-inline-size: 70%;
 	}
+
+	&.box--dark {
+		background-color: color.$stroke;
+		border: 1px solid color.$off-white;
+	}
+}
+
+.box {
+	@extend %box;
+	text-align: center;
+}
+
+.box-no-center {
+	@extend %box;
 }
 
 // --- stack
@@ -106,6 +123,62 @@ main {
 
 .l-stack-small {
 	@include l.stack($space: s.$s0);
+}
+
+// --- box
+
+%l-box {
+	--color-dark: #{color.$dark};
+	--color-light: #{color.$off-white};
+	--border-thin: 1px;
+	--s1: #{s.$s1};
+}
+
+.l-box {
+	@extend %l-box;
+	@include l.box;
+}
+
+.l-box-no-padding {
+	@extend %l-box;
+
+	@include l.box($padding: 0);
+}
+
+.l-box-outline {
+	@extend %l-box;
+
+	@include l.box($outline: true);
+}
+
+// --- center
+
+.l-center {
+	@include l.center($max-inline-size: max-content);
+}
+
+.l-with-sidebar-centered {
+	@include l.with-sidebar($content-min: 66.666%, $side-width: 14ch);
+
+	& > ul {
+		margin-block: 0;
+	}
+
+	& .l-with-sidebar-centered__center {
+		@include l.center($max-inline-size: 28ch);
+	}
+}
+
+.l-cover-centered {
+	@include l.cover(
+		$min-height: $cover-block-size,
+		$centered: '.l-cover-centered__center'
+	);
+
+	&__center {
+		--measure: 60ch;
+		@include l.center($intrinsic: true);
+	}
 }
 
 // --- cluster

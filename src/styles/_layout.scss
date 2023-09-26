@@ -26,6 +26,63 @@
 	}
 }
 
+// --- box
+
+@mixin box(
+	$padding: 'var(--s1)',
+	$thickness: 'var(--border-thin)',
+	$outline: false,
+	$color-dark: 'var(--color-dark)',
+	$color-light: 'var(--color-light)'
+) {
+	@if $padding {
+		padding: #{$padding};
+	}
+	@if $thickness {
+		@if $outline {
+			outline: #{$thickness} solid transparent;
+			outline-offset: calc(0 - #{$thickness});
+		} @else {
+			border: #{$thickness} solid;
+		}
+	}
+	color: #{$color-dark};
+	background-color: #{$color-light};
+
+	& * {
+		color: inherit;
+	}
+
+	&.invert {
+		color: #{$color-light};
+		background-color: #{$color-dark};
+	}
+}
+
+// --- center
+
+@mixin center(
+	$max-inline-size: 'var(--measure)',
+	$and-text: false,
+	$gutters: null,
+	$intrinsic: false
+) {
+	box-sizing: content-box;
+	margin-inline: auto;
+	max-inline-size: #{$max-inline-size};
+	@if $and-text {
+		text-align: center;
+	}
+	@if $gutters {
+		padding-inline: $gutters;
+	}
+	@if $intrinsic {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
 // --- cluster
 
 @mixin cluster($justify: 'flex-start', $align: 'flex-start', $space: 1rem) {
@@ -40,9 +97,9 @@
 
 @mixin _with-sidebar__sidebar($basis) {
 	@if $basis {
-		flex: 1;
-	} @else {
 		flex: 1 $basis;
+	} @else {
+		flex: 1;
 	}
 }
 

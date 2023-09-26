@@ -142,6 +142,254 @@
 				</section>
 			</article>
 			<article class="flow">
+				<h2>Box</h2>
+				<section class="flow">
+					<h3>Basic Box</h3>
+					<figure class="callout">
+						<p>
+							The Box applies styles that <em>may</em> be intrinsic to that
+							element.
+						</p>
+						<p>
+							This includes properties like
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding"
+								><code>padding</code></a
+							>
+							(<code>$padding</code>),
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border"
+								><code>border</code></a
+							>
+							(<code>$thickness</code>, <code>$outline</code>),
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color"
+								><code>color</code></a
+							>
+							and
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"
+								><code>background-color</code></a
+							>
+							(<code>$color-light</code>, <code>$color-dark</code>).
+						</p>
+						<p>
+							The <code>invert</code> class inverts the colours.
+							<code>$outline: true</code>
+							replaces the border with an
+							<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/outline"
+								><code>outline</code></a
+							>
+							of that same <code>$thickness</code> (source:
+							<a href="https://every-layout.dev/layouts/box/"
+								>The Box: Every Layout</a
+							>).
+						</p>
+					</figure>
+					<div class="container">
+						<div class="l-box box-no-center">just a box</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Box within a stack</h3>
+					<figure class="callout">
+						<p>
+							Here “the box” applies its own padding, border and colors. But the
+							stack imposes the top margin on “the box” as it follows the
+							sibling “top” element.
+						</p>
+					</figure>
+					<div class="l-stack container">
+						<div class="box">top</div>
+						<div class="l-box box">the box</div>
+						<div class="box">bottom</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Box with a header</h3>
+					<figure class="callout">
+						<p>
+							Two boxes nested in a container box. The containing box has a
+							border but no padding. The nested boxes have padding but no
+							border. The top “head” box <code>invert</code>s its colors.
+						</p>
+					</figure>
+					<div class="container">
+						<div class="l-box-no-padding box-no-center">
+							<div class="l-box-outline invert box">head</div>
+							<div class="l-box-outline">body</div>
+						</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
+				<h2>Center</h2>
+				<section class="flow">
+					<h3>Basic</h3>
+					<figure class="callout">
+						<p>
+							Most fundamentally the Center layout works by applying
+							<code>auto</code> to
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin-inline"
+								><code>margin-inline</code></a
+							>
+							to a width constrained (
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-inline-size"
+								><code>max-inline-size</code></a
+							>
+							; <code>$max-inline-size</code>)
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content"
+								>block level</a
+							>
+							element.
+						</p>
+						<p>
+							To ensure some minimum space towards the edges
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding-inline"
+								><code>padding-inline</code></a
+							>
+							(<code>$gutter</code>) is used. In turn, to preserve the content
+							width, the global
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing#border-box"
+								><code>border-box</code></a
+							>
+							<code>box-sizing</code> is overidden with
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing#content-box"
+								><code>content-box</code></a
+							>
+							.
+						</p>
+						<p>
+							The aformentioned properities only center the element within its
+							parent element. <code>$and-text</code> adds
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align"
+								><code>text-align</code></a
+							>
+							<code>center</code> to center any <em>contained</em> text.
+							<code>$intrinsic</code> turns the Center-ed element into a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+								>column</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context with
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+								><code>align-items</code></a
+							>
+							<code>center</code> ensuring that any children (effectively
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Glossary/Flex_Item"
+								>flex items</a
+							>
+							) are centered by their <em>intrinsic</em> content width (source:
+							<a href="https://every-layout.dev/layouts/center/"
+								>The Center: Every Layout</a
+							>).
+						</p>
+						<p>
+							Here a centered single column layout is created by wrapping the
+							items in a stack, wrapped in a (padded) center, which centers
+							itself in a box layout.
+						</p>
+					</figure>
+					<div class="container">
+						<div class="l-box">
+							<div class="l-center">
+								<div class="l-stack">
+									<div class="box box--dark">item one</div>
+									<div class="box box--dark">item two</div>
+									<div class="box box--dark">item three</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Documentation Layout</h3>
+					<figure class="callout">
+						<p>
+							The outer container is a Sidebar layout where the item list is the
+							sidebar while a generic
+							<code>&lt;div&gt;</code> acts as the content.
+						</p>
+						<p>
+							Inside that <code>&lt;div&gt;</code> the Center layout can align
+							it's own content relative to the width of the content area.
+						</p>
+					</figure>
+					<div class="l-with-sidebar-centered container">
+						<ul class="l-stack-small box-no-center">
+							<li>item one</li>
+							<li>item two</li>
+							<li>item three</li>
+						</ul>
+						<div>
+							<main class="l-with-sidebar-centered__center box-no-center">
+								<p>Paragraph one.</p>
+								<p>Paragraph two.</p>
+								<p>Paragraph three.</p>
+								<p>Paragraph four.</p>
+								<p>Paragraph five.</p>
+							</main>
+						</div>
+					</div>
+				</section>
+				<section class="flow">
+					<h3>Vertical and horizontal centering</h3>
+					<figure class="callout">
+						<p>
+							The container's Cover layout vertically centers the nested element
+							(as its principal element) within the container's
+							<code>min-block-size</code>.
+						</p>
+						<p>
+							The nested element uses the Center layout to horizontally center
+							itself within the container.
+						</p>
+						<p>
+							Finally, <code>$intrinsic: true</code>
+							turns the nested element into a
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+								>column</a
+							>
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
+							>
+								flexbox
+							</a>
+							layout context with an
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+								><code>align-items</code></a
+							>
+							property of <code>center</code>
+							ensuring that its direct child elements are turned into centered
+							<a
+								href="https://developer.mozilla.org/en-US/docs/Glossary/Flex_Item"
+								>flex items</a
+							>.
+						</p>
+					</figure>
+					<div class="l-cover-centered container">
+						<div class="l-cover-centered__center box-no-center">
+							<div>content</div>
+							<div>some content</div>
+							<div>some more content</div>
+						</div>
+					</div>
+				</section>
+			</article>
+			<article class="flow">
 				<h2>The Cluster</h2>
 				<section class="flow">
 					<h3>Basic Cluster</h3>
